@@ -2,3 +2,4 @@
 *.html
 .idea
 categories.egg-info
+ebay_api.db
