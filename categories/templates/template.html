@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ category.category_name }}</title>
+    <!-- Compiled and minified CSS -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="https://venzee.com/wp-content/uploads/2016/06/ebay_header-2.jpg">
+                        <span class="card-title">Category: {{ category.category_name }}</span>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            <ul class="collapsible popout" data-collapsible="accordion">
+                                {% for cat in categories %}
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">view_list</i>{{ cat.category_name }}</div>
+                                    <div class="collapsible-body">
+                                        <p>
+                                            <strong>Name:</strong> {{ cat.category_name }} <br>
+                                            <strong>Level:</strong> {{ cat.category_level }} <br><br>
+                                            <a class="waves-effect waves-light btn" href="{{ cat.category_id }}.html">Ver mas</a><br>
+                                        </p>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<script type="application/javascript">
+    $(document).ready(function(){
+        $('.collapsible').collapsible();
+    });
+</script>
+</body>
+</html>

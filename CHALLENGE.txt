@@ -1,0 +1,93 @@
+
+                                            Polymath Ventures Engineering Challenge
+
+
+Thank you for your interest in Polymath Ventures! We appreciate the time you spend on this challenge and are happy to
+answer questions.
+
+=========================
+        Overview
+=========================
+
+The purpose of the challenge is for you to demonstrate your programming skills in the context of a "real-world" problem. 
+The task is not complex algorithmically. Solutions will be assessed on the basis of code quality, correctness and
+creativity.
+
+Please use Python 3 to do the challenge. Python is known for being easy to learn, and we do not expect you to be a Python
+expert, especially if you have never used it before. Using Python 3 makes it easier for us to assess your work as that is
+the language we use here every day. We are more than happy to answer questions and point you to some good learning 
+materials if you are new to Python.
+
+The challenge is in two parts:
+1. Use the GetCategories API from eBay.com to download the entire eBay category tree and store it in a SQLite database. The
+   design of the database schema is up to you.
+2. Use your SQLite database to render category trees in HTML. It needs to be valid markup that loads in a browser and 
+   clearly reflects the structure of the tree. If you want you can show off some of your mad front-end skills.
+
+Your solution should be runnable from the command line and operate in two modes corresponding to the tasks above:
+1. When given the command-line argument "--rebuild" it should use the GetCategories API to download the category tree and
+   create the SQLite database. If the database already exists it should first be deleted.
+2. When given the command-line argument "--render <category_id>" it should output a file named <category_id>.html that
+   contains a simple web page displaying the category tree rooted at the given ID. The tree should be rendered from the
+   data in your SQLite database. Do not call the GetCategories API! If the database does not exist or no category with the
+   given ID could be found the program should exit with an error.
+
+Please do not use an application framework such as Django to solve this problem. A simple, self-contained program using 
+as few external dependencies as possible is preferred.
+
+=========================
+    GetCategories API
+=========================
+
+The GetCategories eBay API is documented here:
+
+http://developer.ebay.com/DevZone/XML/docs/reference/ebay/GetCategories.html
+
+There is a fair amount to read on this page, and learning how to use this API is part of the challenge. However, you SHOULD
+NOT need to read anything about the eBay API not on this page. If you have questions that are not answered on this page
+please ask us. In particular, we are providing credentials to access the API so you SHOULD NOT need to register for the
+eBay Developer Program.
+
+The attached get_ebay_official_time.sh shell script contains a sample call to another eBay API; it is provided as a working
+example of API interaction. Carefully copy the HTTP headers and authentication token from the script into your code and
+adapt it to call the GetCategories API.
+
+The eBay category tree has a maximum depth of six and contains 34 top-level (level=1) categories.
+
+=========================
+         SQLite
+=========================
+
+SQLite is a SQL database that lives in a single file. It is a very popular library, and most programming languages contain
+bindings to it. Part of the challenge is to design a SQL schema to store the category tree. Your schema may contain one or 
+more tables. For each category please store at least the following attributes:
+
+o CategoryID
+o CategoryName
+o CategoryLevel
+o BestOfferEnabled
+
+=========================
+     Sample Session
+=========================
+
+Here is a sample session with the program:
+
+% ./categories --rebuild
+% ./categories --rebuild
+% ./categories --render 179281
+% ./categories --render 179022
+% ls 179281.html
+179281.html
+% ls 179022.html
+179022.html
+% ./categories --render 6666666666
+No category with ID: 6666666666
+
+The way category trees are displayed in HTML is completely up to you, but you should use nesting to make the structure 
+clearly visible in a web browser. For example, you could use nested tables or lists. Each node of the tree should display 
+the category ID, name, level and best offer. Beyond these requirements, make the HTML as creative as you want.
+
+Important: when rendering the HTML use the data in your SQLite database and DO NOT call the GetCategories API again.
+
+Thank you again for your time and good luck with the challenge!
