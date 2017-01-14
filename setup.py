@@ -9,7 +9,13 @@ setup(
     license='UNLICENSE',
     keywords='cli',
     packages=find_packages(exclude=['docs', 'tests*']),
-    install_requires=['docopt'],
+    install_requires=[
+        'docopt',
+        'Jinja2',
+        'peewee',
+        'requests',
+        'xmltodict',
+    ],
     extras_require={
         'test': ['coverage', 'pytest', 'pytest-cov'],
     },

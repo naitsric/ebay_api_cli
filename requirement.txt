@@ -1,0 +1,7 @@
+-e git+git@github.com:naitsric/ebay_api_cli.git@c0bbca5b854841f02957f140363b0881dc9d42e2#egg=categories
+docopt==0.6.2
+Jinja2==2.9.4
+MarkupSafe==0.23
+peewee==2.8.5
+requests==2.12.4
+xmltodict==0.10.2
